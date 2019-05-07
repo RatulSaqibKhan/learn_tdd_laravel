@@ -14,6 +14,9 @@
 Route::get('/', function () {
     return view('welcome');
 });
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('users', 'UserController@index');
 Route::get('users/create', 'UserController@create');
@@ -21,3 +24,6 @@ Route::post('users', 'UserController@store');
 Route::get('users/{id}', 'UserController@edit');
 Route::put('users/{id}', 'UserController@update');
 Route::get('users/{id}/delete', 'UserController@delete');
+
+Route::get('/tasks', 'TaskController@index');
+Route::get('/tasks/{task}','TaskController@show');
