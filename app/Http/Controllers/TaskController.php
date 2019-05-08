@@ -21,7 +21,7 @@ class TaskController extends Controller
      */
     public function index()
     {
-        $tasks = Task::get();
+        $tasks = Task::latest()->get();
         return view('tasks.index',compact('tasks'));
     }
 
@@ -76,7 +76,7 @@ class TaskController extends Controller
      */
     public function edit(Task $task)
     {
-        //
+        return view('tasks.edit',compact('task'));
     }
 
     /**
@@ -88,6 +88,8 @@ class TaskController extends Controller
      */
     public function update(Request $request, Task $task)
     {
+        $this->authorize('update', $task);
+
         $task->update($request->all());
         return redirect('/tasks/'.$task->id);
     }
@@ -100,6 +102,10 @@ class TaskController extends Controller
      */
     public function destroy(Task $task)
     {
-        //
+        $this->authorize('delete', $task);
+
+        $task->delete();
+
+        return redirect("/tasks");
     }
 }

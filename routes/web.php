@@ -29,4 +29,6 @@ Route::get('/tasks', 'TaskController@index');
 Route::get('/tasks/create','TaskController@create');
 Route::post('/tasks/create','TaskController@store');
 Route::get('/tasks/{task}','TaskController@show');
+Route::get('/tasks/{task}/edit','TaskController@edit');
 Route::put('/tasks/{task}','TaskController@update');
+Route::delete('/tasks/{task}','TaskController@destroy');
